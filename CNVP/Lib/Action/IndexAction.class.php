@@ -1,7 +1,10 @@
 <?php
-// 本类由系统自动生成，仅供测试用途
 class IndexAction extends CommonAction {
-    public function index(){
-		$this->display();
-	}
+    // 框架首页
+    public function index() {
+        C ( 'SHOW_RUN_TIME', false ); // 运行时间显示
+        C ( 'SHOW_PAGE_TRACE', false );
+        echo 111;
+        $this->display();
+    }
 }
