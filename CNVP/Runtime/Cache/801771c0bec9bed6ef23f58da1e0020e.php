@@ -3,12 +3,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ThinkPHP管理系统登录</title>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/style.css" />
-<script type="text/javascript" src="__PUBLIC__/Js/Base.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Js/prototype.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Js/mootools.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Js/Think/ThinkAjax.js"></script>
-<script type="text/javascript" src="__PUBLIC__/Js/common.js"></script>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/rback/Css/style.css" />
+<script type="text/javascript" src="__PUBLIC__/rback/Js/Base.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rback/Js/prototype.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rback/Js/mootools.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rback/Js/Think/ThinkAjax.js"></script>
+<script type="text/javascript" src="__PUBLIC__/rback/Js/common.js"></script>
  <script language="JavaScript">
 <!--
 var PUBLIC	 =	 '__PUBLIC__';
@@ -36,7 +36,7 @@ function fleshVerify(){
 <tr><td height="3" colspan="2" class="topTd" ></td></tr>
 <tr class="row" ><td class="tRight" width="25%">帐 号：</td><td><input type="text" class="medium bLeftRequire" check="Require" warning="请输入帐号" name="account"></td></tr>
 <tr class="row" ><td class="tRight">密 码：</td><td><input type="password" class="medium bLeftRequire" check="Require" warning="请输入密码" name="password"></td></tr>
-<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="/index.php/Public/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
+<tr class="row" ><td class="tRight">验证码：</td><td><input type="text" onKeyDown="keydown(event)" class="small bLeftRequire" check="Require" warning="请输入验证码" name="verify"> <img id="verifyImg" SRC="/Public/verify/" onClick="fleshVerify()" BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle"></td></tr>
 <tr class="row" ><td class="tCenter" align="justify" colspan="2">
 <input type="submit" value="登 录" class="submit medium hMargin">
 </td></tr>

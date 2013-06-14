@@ -538,7 +538,7 @@ class TagLibCx extends TagLib {
         return $parseStr.$endStr;
     }
 
-    // import别名 采用文件方式加载(要使用命名空间必须用import) 例如 <load file="__PUBLIC__/Js/Base.js" />
+    // import别名 采用文件方式加载(要使用命名空间必须用import) 例如 <load file="__PUBLIC__/rback/Js/Base.js" />
     public function _load($attr,$content) {
         return $this->_import($attr,$content,true);
     }
@@ -548,7 +548,7 @@ class TagLibCx extends TagLib {
         return $this->_import($attr,$content,true,'css');
     }
 
-    // import别名使用 导入js文件 <js file="__PUBLIC__/Js/Base.js" />
+    // import别名使用 导入js文件 <js file="__PUBLIC__/rback/Js/Base.js" />
     public function _js($attr,$content) {
         return $this->_import($attr,$content,true,'js');
     }
