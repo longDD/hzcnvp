@@ -1,66 +1,410 @@
-<?php if (!defined('THINK_PATH')) exit();?>
-
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>『ThinkPHP管理平台』By ThinkPHP <?php echo (THINK_VERSION); ?></title>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/Css/blue.css" />
-<script type="text/javascript" src="__PUBLIC__/rback/Js/Base.js"></script>
-<script type="text/javascript" src="__PUBLIC__/rback/Js/prototype.js"></script>
-<script type="text/javascript" src="__PUBLIC__/rback/Js/mootools.js"></script>
-<script type="text/javascript" src="__PUBLIC__/rback/Js/Think/ThinkAjax.js"></script>
-<script type="text/javascript" src="__PUBLIC__/rback/Js/Form/CheckForm.js"></script>
-<script type="text/javascript" src="__PUBLIC__/rback/Js/common.js"></script>
-<script language="JavaScript">
-<!--
-//指定当前组模块URL地址 
-var URL = '__URL__';
-var APP	 =	 '__APP__';
-var PUBLIC = '__PUBLIC__';
-//-->
-</script>
+<title>Matrix Admin</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/css/bootstrap-responsive.min.css" />
+<link rel="stylesheet" href="__PUBLIC__/css/fullcalendar.css" />
+<link rel="stylesheet" href="__PUBLIC__/css/matrix-style.css" />
+<link rel="stylesheet" href="__PUBLIC__/css/matrix-media.css" />
+<link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.css" />
+<link rel="stylesheet" href="__PUBLIC__/css/jquery.gritter.css" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
-
 <body>
-<!-- 菜单区域  -->
 
-<!-- 主页面开始 -->
-<div id="main" class="main" >
+<!--Header-part-->
+<div id="header">
+  <h1><a href="dashboard.html">杭州捷点内部管理系统</a></h1>
+</div>
+<!--close-Header-part-->
+<!--top-Header-menu-->
+<div id="user-nav" class="navbar navbar-inverse">
+  <ul class="nav">
+    <li  class="dropdown" id="profile-messages" ><a title="" href="#" data-toggle="dropdown" data-target="#profile-messages" class="dropdown-toggle"><i class="icon icon-user"></i>  <span class="text">欢迎登陆</span><b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><a href="#"><i class="icon-user"></i> 用户设置</a></li>
+        <li class="divider"></li>
+        <li><a href="#"><i class="icon-check"></i> My Tasks</a></li>
+        <li class="divider"></li>
+        <li><a href="login.html"><i class="icon-key"></i> 注销</a></li>
+      </ul>
+    </li>
+    <li class=""><a title="" href="#"><i class="icon icon-cog"></i> <span class="text">设置</span></a></li>
+    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">注销</span></a></li>
+  </ul>
+</div>
+<!--close-top-Header-menu-->
+<!--start-top-serch-->
+<div id="search">
+  <input type="text" placeholder="Search here..."/>
+  <button type="submit" class="tip-bottom" title="Search"><i class="icon-search icon-white"></i></button>
+</div>
+<!--close-top-serch-->
+<div id="sidebar"><a href="#" class="visible-phone"><i class="icon icon-home"></i> 杭州捷点内部管理系统</a>
+  <ul>
+    <li class="active"><a href="<?php echo U('/Index');?>"><i class="icon icon-home"></i> <span>综合首页</span></a> </li>
+    <li> <a href="<?php echo U('/Project');?>"><i class="icon icon-th"></i> <span>项目管理</span></a></li>
+    <li> <a href="<?php echo U('/News');?>"><i class="icon icon-reorder"></i> <span>信息管理</span></a></li>
+    <li> <a href="<?php echo U('/ooxx');?>"><i class="icon icon-file"></i> <span>维护管理</span></a> </li>  
+    <li> <a href="<?php echo U('/User');?>"><i class="icon icon-user"></i> <span>用户管理</span></a> </li>
+    <li> <a href="<?php echo U('/System');?>"><i class="icon icon-cog"></i> <span>系统配置</span></a> </li>
+    <li class="content"><span>杭州捷点内部管理系统-Base版</span></li>
+  </ul>
+</div>
+<div id="content">
 
-<!-- 主体内容  -->
-<div class="content" >
-<div class="title">后台用户列表</div>
-<!--  功能操作区域  -->
-<div class="operate" >
-<div class="impBtn hMargin fLeft shadow" ><input type="button" id="" name="add" value="新增" onclick="add()" class="add imgButton"></div>
-<div class="impBtn hMargin fLeft shadow" ><input type="button" id="" name="edit" value="编辑" onclick="edit()" class="edit imgButton"></div>
-<div class="impBtn hMargin fLeft shadow" ><input type="button" id="" name="delete" value="删除" onclick="del()" class="delete imgButton"></div>
-<!-- 查询区域 -->
-<div class="fRig">
-<form method='post' action="__URL__">
-<div class="fLeft"><span id="key"><input type="text" name="account" title="帐号查询" class="medium" ></span></div>
-<div class="impBtn hMargin fLeft shadow" ><input type="submit" id="" name="search" value="查询" onclick="" class="search imgButton"></div>
-</div>
-<!-- 高级查询区域 -->
-<div  id="searchM" class=" none search cBoth" >
-</div>
-</form>
-</div>
-<!-- 功能操作区域结束 -->
+  <div id="content-header">
+    <div id="breadcrumb">
+    	<a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+ 		<a href="index.html" title="用户管理" class="tip-bottom"><i class="icon-user"></i> 用户管理</a>
+ 		<a href="index.html" title="用户管理" class="tip-bottom">用户列表</a>
+	</div>
+  </div>
 
-<!-- 列表显示区域  -->
-<div class="list" >
-<!-- Think 系统列表组件开始 -->
-<table id="checkList" class="list" cellpadding=0 cellspacing=0 ><tr><td height="3" colspan="9" class="topTd" ></td></tr><tr class="row" ><th width="8"><input type="checkbox" id="check" onclick="CheckAll('checkList')"></th><th width="8%"><a href="javascript:sortBy('id','<?php echo ($sort); ?>','index')" title="按照编号<?php echo ($sortType); ?> ">编号<?php if(($order) == "id"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th><a href="javascript:sortBy('account','<?php echo ($sort); ?>','index')" title="按照用户名<?php echo ($sortType); ?> ">用户名<?php if(($order) == "account"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th><a href="javascript:sortBy('nickname','<?php echo ($sort); ?>','index')" title="按照昵称<?php echo ($sortType); ?> ">昵称<?php if(($order) == "nickname"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th><a href="javascript:sortBy('create_time','<?php echo ($sort); ?>','index')" title="按照添加时间<?php echo ($sortType); ?> ">添加时间<?php if(($order) == "create_time"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th><a href="javascript:sortBy('last_login_time','<?php echo ($sort); ?>','index')" title="按照上次登录<?php echo ($sortType); ?> ">上次登录<?php if(($order) == "last_login_time"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th><a href="javascript:sortBy('login_count','<?php echo ($sort); ?>','index')" title="按照登录次数<?php echo ($sortType); ?> ">登录次数<?php if(($order) == "login_count"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th><a href="javascript:sortBy('status','<?php echo ($sort); ?>','index')" title="按照状态<?php echo ($sortType); ?> ">状态<?php if(($order) == "status"): ?><img src="../Public/images/<?php echo ($sortImg); ?>.gif" width="12" height="17" border="0" align="absmiddle"><?php endif; ?></a></th><th >操作</th></tr><?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$user): $mod = ($i % 2 );++$i;?><tr class="row" ><td><input type="checkbox" name="key"	value="<?php echo ($user["id"]); ?>"></td><td><?php echo ($user["id"]); ?></td><td><a href="javascript:edit('<?php echo (addslashes($user["id"])); ?>')"><?php echo ($user["account"]); ?></a></td><td><?php echo ($user["nickname"]); ?></td><td><?php echo (todate($user["create_time"],'Y-m-d H#i#s')); ?></td><td><?php echo (todate($user["last_login_time"],'Y-m-d H#i#s')); ?></td><td><?php echo ($user["login_count"]); ?></td><td><?php echo (getstatus($user["status"])); ?></td><td> <?php echo (showstatus($user["status"],$user['id'])); ?>&nbsp;</td></tr><?php endforeach; endif; else: echo "" ;endif; ?><tr><td height="3" colspan="9" class="bottomTd"></td></tr></table>
-<!-- Think 系统列表组件结束 -->
+<!--Action boxes-->
+  <div class="container-fluid">
+    <div class="quick-actions_homepage">
+      <ul class="quick-actions">
+        <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i> <span class="label label-important">20</span> My Dashboard </a> </li>
+        <li class="bg_lg span3"> <a href="charts.html"> <i class="icon-signal"></i> Charts</a> </li>
+        <li class="bg_ly"> <a href="widgets.html"> <i class="icon-inbox"></i><span class="label label-success">101</span> Widgets </a> </li>
+        <li class="bg_lo"> <a href="tables.html"> <i class="icon-th"></i> Tables</a> </li>
+        <li class="bg_ls"> <a href="grid.html"> <i class="icon-fullscreen"></i> Full width</a> </li>
+        <li class="bg_lo span3"> <a href="form-common.html"> <i class="icon-th-list"></i> Forms</a> </li>
+        <li class="bg_ls"> <a href="buttons.html"> <i class="icon-tint"></i> Buttons</a> </li>
+        <li class="bg_lb"> <a href="interface.html"> <i class="icon-pencil"></i>Elements</a> </li>
+        <li class="bg_lg"> <a href="calendar.html"> <i class="icon-calendar"></i> Calendar</a> </li>
+        <li class="bg_lr"> <a href="error404.html"> <i class="icon-info-sign"></i> Error</a> </li>
 
+      </ul>
+    </div>
+<!--End-Action boxes-->    
+
+<!--Chart-box-->    
+    <div class="row-fluid">
+      <div class="widget-box">
+        <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
+          <h5>Site Analytics</h5>
+        </div>
+        <div class="widget-content" >
+          <div class="row-fluid">
+            <div class="span9">
+              <div class="chart"></div>
+            </div>
+            <div class="span3">
+              <ul class="site-stats">
+                <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Users</small></li>
+                <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Users </small></li>
+                <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>656</strong> <small>Total Shop</small></li>
+                <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Orders</small></li>
+                <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Orders</small></li>
+                <li class="bg_lh"><i class="icon-globe"></i> <strong>8540</strong> <small>Online Orders</small></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--End-Chart-box--> 
+    <hr/>
+    <div class="row-fluid">
+      <div class="span6">
+        <div class="widget-box">
+          <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
+            <h5>Latest Posts</h5>
+          </div>
+          <div class="widget-content nopadding collapse in" id="collapseG2">
+            <ul class="recent-posts">
+              <li>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="__PUBLIC__/img/demo/av1.jpg"> </div>
+                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
+                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
+                </div>
+              </li>
+              <li>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="__PUBLIC__/img/demo/av2.jpg"> </div>
+                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
+                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
+                </div>
+              </li>
+              <li>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="__PUBLIC__/img/demo/av4.jpg"> </div>
+                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
+                  <p><a href="#">This is a much longer one that will go on for a few lines.Itaffle to pad out the comment.</a> </p>
+                </div>
+              <li>
+                <button class="btn btn-warning btn-mini">View All</button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>To Do list</h5>
+          </div>
+          <div class="widget-content">
+            <div class="todo">
+              <ul>
+                <li class="clearfix">
+                  <div class="txt"> Luanch This theme on Themeforest <span class="by label">Alex</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Manage Pending Orders <span class="date badge badge-warning">Today</span> </div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> MAke your desk clean <span class="by label">Admin</span></div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Today we celebrate the theme <span class="date badge badge-info">08.03.2013</span> </div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+                <li class="clearfix">
+                  <div class="txt"> Manage all the orders <span class="date badge badge-important">12.03.2013</span> </div>
+                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+            <h5>Progress Box</h5>
+          </div>
+          <div class="widget-content">
+            <ul class="unstyled">
+              <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 81% Clicks <span class="pull-right strong">567</span>
+                <div class="progress progress-striped ">
+                  <div style="width: 81%;" class="bar"></div>
+                </div>
+              </li>
+              <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 72% Uniquie Clicks <span class="pull-right strong">507</span>
+                <div class="progress progress-success progress-striped ">
+                  <div style="width: 72%;" class="bar"></div>
+                </div>
+              </li>
+              <li> <span class="icon24 icomoon-icon-arrow-down-2 red"></span> 53% Impressions <span class="pull-right strong">457</span>
+                <div class="progress progress-warning progress-striped ">
+                  <div style="width: 53%;" class="bar"></div>
+                </div>
+              </li>
+              <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 3% Online Users <span class="pull-right strong">8</span>
+                <div class="progress progress-danger progress-striped ">
+                  <div style="width: 3%;" class="bar"></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
+            <h5>News updates</h5>
+          </div>
+          <div class="widget-content nopadding updates collapse in" id="collapseG3">
+            <div class="new-update clearfix"><i class="icon-ok-sign"></i>
+              <div class="update-done"><a title="" href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></a> <span>dolor sit amet, consectetur adipiscing eli</span> </div>
+              <div class="update-date"><span class="update-day">20</span>jan</div>
+            </div>
+            <div class="new-update clearfix"> <i class="icon-gift"></i> <span class="update-notice"> <a title="" href="#"><strong>Congratulation Maruti, Happy Birthday </strong></a> <span>many many happy returns of the day</span> </span> <span class="update-date"><span class="update-day">11</span>jan</span> </div>
+            <div class="new-update clearfix"> <i class="icon-move"></i> <span class="update-alert"> <a title="" href="#"><strong>Maruti is a Responsive Admin theme</strong></a> <span>But already everything was solved. It will ...</span> </span> <span class="update-date"><span class="update-day">07</span>Jan</span> </div>
+            <div class="new-update clearfix"> <i class="icon-leaf"></i> <span class="update-done"> <a title="" href="#"><strong>Envato approved Maruti Admin template</strong></a> <span>i am very happy to approved by TF</span> </span> <span class="update-date"><span class="update-day">05</span>jan</span> </div>
+            <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="span6">
+        <div class="widget-box widget-chat">
+          <div class="widget-title bg_lb"> <span class="icon"> <i class="icon-comment"></i> </span>
+            <h5>Chat Option</h5>
+          </div>
+          <div class="widget-content nopadding collapse in" id="collapseG4">
+            <div class="chat-users panel-right2">
+              <div class="panel-title">
+                <h5>Online Users</h5>
+              </div>
+              <div class="panel-content nopadding">
+                <ul class="contact-list">
+                  <li id="user-Alex" class="online"><a href="#"><img alt="" src="__PUBLIC__/img/demo/av1.jpg" /> <span>Alex</span></a></li>
+                  <li id="user-Linda"><a href="#"><img alt="" src="__PUBLIC__/img/demo/av2.jpg" /> <span>Linda</span></a></li>
+                  <li id="user-John" class="online new"><a href="#"><img alt="" src="__PUBLIC__/img/demo/av3.jpg" /> <span>John</span></a><span class="msg-count badge badge-info">3</span></li>
+                  <li id="user-Mark" class="online"><a href="#"><img alt="" src="__PUBLIC__/img/demo/av4.jpg" /> <span>Mark</span></a></li>
+                  <li id="user-Maxi" class="online"><a href="#"><img alt="" src="__PUBLIC__/img/demo/av5.jpg" /> <span>Maxi</span></a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="chat-content panel-left2">
+              <div class="chat-messages" id="chat-messages">
+                <div id="chat-messages-inner"></div>
+              </div>
+              <div class="chat-message well">
+                <button class="btn btn-success">Send</button>
+                <span class="input-box">
+                <input type="text" name="msg-box" id="msg-box" />
+                </span> </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
+            <h5>Our Partner (Box with Fix height)</h5>
+          </div>
+          <div class="widget-content nopadding fix_hgt">
+            <ul class="recent-posts">
+              <li>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="__PUBLIC__/img/demo/av1.jpg"> </div>
+                <div class="article-post"> <span class="user-info">John Deo</span>
+                  <p>Web Desginer &amp; creative Front end developer</p>
+                </div>
+              </li>
+              <li>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="__PUBLIC__/img/demo/av2.jpg"> </div>
+                <div class="article-post"> <span class="user-info">John Deo</span>
+                  <p>Web Desginer &amp; creative Front end developer</p>
+                </div>
+              </li>
+              <li>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="__PUBLIC__/img/demo/av4.jpg"> </div>
+                <div class="article-post"> <span class="user-info">John Deo</span>
+                  <p>Web Desginer &amp; creative Front end developer</p>
+                </div>
+            </ul>
+          </div>
+        </div>
+        <div class="accordion" id="collapse-group">
+          <div class="accordion-group widget-box">
+            <div class="accordion-heading">
+              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
+                <h5>Accordion Example 1</h5>
+                </a> </div>
+            </div>
+            <div class="collapse in accordion-body" id="collapseGOne">
+              <div class="widget-content"> It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </div>
+            </div>
+          </div>
+          <div class="accordion-group widget-box">
+            <div class="accordion-heading">
+              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGTwo" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
+                <h5>Accordion Example 2</h5>
+                </a> </div>
+            </div>
+            <div class="collapse accordion-body" id="collapseGTwo">
+              <div class="widget-content">And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</div>
+            </div>
+          </div>
+          <div class="accordion-group widget-box">
+            <div class="accordion-heading">
+              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGThree" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
+                <h5>Accordion Example 3</h5>
+                </a> </div>
+            </div>
+            <div class="collapse accordion-body" id="collapseGThree">
+              <div class="widget-content"> Waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just </div>
+            </div>
+          </div>
+        </div>
+        <div class="widget-box collapsible">
+          <div class="widget-title"> <a data-toggle="collapse" href="#collapseOne"> <span class="icon"><i class="icon-arrow-right"></i></span>
+            <h5>Toggle, Open by default, </h5>
+            </a> </div>
+          <div id="collapseOne" class="collapse in">
+            <div class="widget-content"> This box is opened by default, paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </div>
+          </div>
+          <div class="widget-title"> <a data-toggle="collapse" href="#collapseTwo"> <span class="icon"><i class="icon-remove"></i></span>
+            <h5>Toggle, closed by default</h5>
+            </a> </div>
+          <div id="collapseTwo" class="collapse">
+            <div class="widget-content"> This box is now open </div>
+          </div>
+          <div class="widget-title"> <a data-toggle="collapse" href="#collapseThree"> <span class="icon"><i class="icon-remove"></i></span>
+            <h5>Toggle, closed by default</h5>
+            </a> </div>
+          <div id="collapseThree" class="collapse">
+            <div class="widget-content"> This box is now open </div>
+          </div>
+        </div>
+        <div class="widget-box">
+          <div class="widget-title">
+            <ul class="nav nav-tabs">
+              <li class="active"><a data-toggle="tab" href="#tab1">Tab1</a></li>
+              <li><a data-toggle="tab" href="#tab2">Tab2</a></li>
+              <li><a data-toggle="tab" href="#tab3">Tab3</a></li>
+            </ul>
+          </div>
+          <div class="widget-content tab-content">
+            <div id="tab1" class="tab-pane active">
+              <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment.</p>
+              <img src="__PUBLIC__/img/demo/demo-image1.jpg" alt="demo-image"/></div>
+            <div id="tab2" class="tab-pane"> <img src="__PUBLIC__/img/demo/demo-image2.jpg" alt="demo-image"/>
+              <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment.</p>
+            </div>
+            <div id="tab3" class="tab-pane">
+              <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. </p>
+              <img src="__PUBLIC__/img/demo/demo-image3.jpg" alt="demo-image"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-<!--  分页显示区域 -->
-<div class="page"><?php echo ($page); ?></div>
-<!-- 列表显示区域结束 -->
+<!--Footer-part-->
+
+<div class="row-fluid">
+  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in/">Themedesigner.in</a> </div>
 </div>
-<!-- 主体内容结束 -->
-</div>
-<!-- 主页面结束 -->
+
+<!--end-Footer-part-->
+
+<script src="__PUBLIC__/js/excanvas.min.js"></script> 
+<script src="__PUBLIC__/js/jquery.min.js"></script> 
+<script src="__PUBLIC__/js/jquery.ui.custom.js"></script> 
+<script src="__PUBLIC__/js/bootstrap.min.js"></script> 
+<script src="__PUBLIC__/js/jquery.flot.min.js"></script> 
+<script src="__PUBLIC__/js/jquery.flot.resize.min.js"></script> 
+<script src="__PUBLIC__/js/jquery.peity.min.js"></script> 
+<script src="__PUBLIC__/js/fullcalendar.min.js"></script> 
+<script src="__PUBLIC__/js/matrix.js"></script> 
+<script src="__PUBLIC__/js/matrix.dashboard.js"></script> 
+<script src="__PUBLIC__/js/jquery.gritter.min.js"></script> 
+<script src="__PUBLIC__/js/matrix.interface.js"></script> 
+<script src="__PUBLIC__/js/matrix.chat.js"></script> 
+<script src="__PUBLIC__/js/jquery.validate.js"></script> 
+<script src="__PUBLIC__/js/matrix.form_validation.js"></script> 
+<script src="__PUBLIC__/js/jquery.wizard.js"></script> 
+<script src="__PUBLIC__/js/jquery.uniform.js"></script> 
+<script src="__PUBLIC__/js/select2.min.js"></script> 
+<script src="__PUBLIC__/js/matrix.popover.js"></script> 
+<script src="__PUBLIC__/js/jquery.dataTables.min.js"></script> 
+<script src="__PUBLIC__/js/matrix.tables.js"></script> 
+
+<script type="text/javascript">
+  // This function is called from the pop-up menus to transfer to
+  // a different page. Ignore if the value returned is a null string:
+  function goPage (newURL) {
+
+      // if url is empty, skip the menu dividers and reset the menu selection to default
+      if (newURL != "") {
+      
+          // if url is "-", it is this page -- reset the menu:
+          if (newURL == "-" ) {
+              resetMenu();            
+          } 
+          // else, send page to designated URL            
+          else {  
+            document.location.href = newURL;
+          }
+      }
+  }
+
+// resets the menu selection upon entry to this page:
+function resetMenu() {
+   document.gomenu.selector.selectedIndex = 2;
+}
+</script>
+</body>
+</html>
